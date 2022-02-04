@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.seanutf.mediapreviewprovider.QueryMode
 import com.seanutf.mediapreviewprovider.config.QueryConfig
+import com.seanutf.mediapreviewprovider.data.ImgFormat
 
 /**
  * 媒体库展示列表
@@ -56,7 +57,8 @@ class MediaPreviewGridFragment : Fragment() {
     private fun initViewModel() {
         val queryConfig = QueryConfig()
         queryConfig.mode = QueryMode.ALL
-        viewModel.setConfig(queryConfig)
+        queryConfig.imgQueryFormatArray = arrayOf(ImgFormat.IMG_JPG, ImgFormat.IMG_PNG, ImgFormat.IMG_AVIF)
+        viewModel.setConfig(requireActivity().application, queryConfig)
 
         viewModel.showLoading.observe(viewLifecycleOwner){
             //showLoading(it)
@@ -82,6 +84,8 @@ class MediaPreviewGridFragment : Fragment() {
     }
 
     companion object {
+        const val TAG = "MediaPreviewGridFragment"
+
         @JvmStatic
         fun newInstance() =
             MediaPreviewGridFragment().apply {

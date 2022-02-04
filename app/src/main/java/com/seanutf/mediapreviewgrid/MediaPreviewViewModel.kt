@@ -1,5 +1,6 @@
 package com.seanutf.mediapreviewgrid
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,8 +26,8 @@ class MediaPreviewViewModel : ViewModel() {
     private val mediaProvider = MediaPreviewProvider()
     private var needLoadAlbum = true
 
-    fun setConfig(queryConfig: QueryConfig) {
-        mediaProvider.setConfig(queryConfig)
+    fun setConfig(application: Application, queryConfig: QueryConfig) {
+        mediaProvider.setConfig(application, queryConfig)
     }
 
     fun loadMediaData() {
