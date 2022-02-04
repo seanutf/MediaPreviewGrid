@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#aaaaaa"
+    android:orientation="vertical">
+
+    <com.seanutf.mediapreviewgrid.PicImageView
+        android:id="@+id/ivPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop" />
+
+    <!--  视频时长  -->
+    <TextView
+        android:id="@+id/tvVideoDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ivPhoto"
+        android:layout_alignBottom="@id/ivPhoto"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:paddingBottom="1dp"
+        android:drawableLeft="@mipmap/ic_media_list_video_tag"
+        android:drawablePadding="3dp"
+        android:visibility="invisible" />
+
+    <!--  视频底部渐变遮罩  -->
+    <View
+        android:id="@+id/videoTag"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@id/ivPhoto"
+        android:layout_alignBottom="@id/ivPhoto"
+        android:background="@drawable/shape_bg_gradient_000000_80000000"
+        android:visibility="invisible" />
+</RelativeLayout>
