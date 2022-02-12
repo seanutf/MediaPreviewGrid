@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.seanutf.mediapreviewprovider.data.Media
+import com.seanutf.media.queryprovider.data.Media
 
 /**
  * @Author seanutf

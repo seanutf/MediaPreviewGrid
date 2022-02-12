@@ -5,7 +5,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.seanutf.mediapreviewprovider.data.Media
+import com.seanutf.media.queryprovider.data.Media
 
 /**
  * @Author seanutf

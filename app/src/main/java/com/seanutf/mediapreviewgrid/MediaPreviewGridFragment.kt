@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.seanutf.mediapreviewprovider.QueryMode
-import com.seanutf.mediapreviewprovider.config.QueryConfig
-import com.seanutf.mediapreviewprovider.data.ImgFormat
+import com.seanutf.media.queryprovider.QueryMode
+import com.seanutf.media.queryprovider.config.QueryConfig
+import com.seanutf.media.queryprovider.data.ImgFormat
 
 /**
  * 媒体库展示列表

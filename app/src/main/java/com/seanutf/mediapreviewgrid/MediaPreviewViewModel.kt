@@ -4,10 +4,10 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.seanutf.mediapreviewprovider.config.QueryConfig
-import com.seanutf.mediapreviewprovider.core.MediaPreviewProvider
-import com.seanutf.mediapreviewprovider.data.Album
-import com.seanutf.mediapreviewprovider.data.Media
+import com.seanutf.media.queryprovider.config.QueryConfig
+import com.seanutf.media.queryprovider.core.MediaQueryProvider
+import com.seanutf.media.queryprovider.data.Album
+import com.seanutf.media.queryprovider.data.Media
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -23,7 +23,7 @@ class MediaPreviewViewModel : ViewModel() {
 
     private var currentAlbum: Album? = null
     private var currentAlbumList: List<Album>? = null
-    private val mediaProvider = MediaPreviewProvider()
+    private val mediaProvider = MediaQueryProvider()
     private var needLoadAlbum = true
 
     fun setConfig(application: Application, queryConfig: QueryConfig) {
@@ -39,7 +39,7 @@ class MediaPreviewViewModel : ViewModel() {
         }
     }
 
-    fun getMediaStoreList(): List<Media>?{
+    fun getMediaStoreList(): List<Media>? {
         return currentAlbum?.mediaList
     }
 
@@ -79,12 +79,12 @@ class MediaPreviewViewModel : ViewModel() {
         }
 
         //以下逻辑均是load过程已经结束，不需要子线程，所以使用postValue进行切换线程通知
-        if(needLoadAlbum && !currentAlbumList.isNullOrEmpty()){
+        if (needLoadAlbum && !currentAlbumList.isNullOrEmpty()) {
             needLoadAlbum = false
             albumListData.postValue(currentAlbumList!!)
         }
 
-        if(error){
+        if (error) {
             uiShowState.postValue(UiShowState.ERROR)
         } else {
             uiShowState.postValue(UiShowState.SUCCESS)
