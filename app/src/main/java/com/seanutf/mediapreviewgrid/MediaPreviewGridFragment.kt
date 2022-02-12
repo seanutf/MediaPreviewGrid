@@ -21,6 +21,7 @@ class MediaPreviewGridFragment : Fragment() {
     private lateinit var rvMediaList: RecyclerView
     private val listAdapter = MediaPreviewAdapter()
     private val viewModel: MediaPreviewViewModel by viewModels()
+    var queryConfig: QueryConfig? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -52,10 +53,8 @@ class MediaPreviewGridFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        val queryConfig = QueryConfig()
-        queryConfig.mode = QueryMode.ALL
-        queryConfig.imgQueryFormatArray = arrayOf(ImgFormat.IMG_JPG, ImgFormat.IMG_PNG, ImgFormat.IMG_AVIF)
-        viewModel.setConfig(requireActivity().application, queryConfig)
+        createConfig()
+        queryConfig?.let { viewModel.setConfig(requireActivity().application, it) }
 
         viewModel.showLoading.observe(viewLifecycleOwner){
             //showLoading(it)
@@ -76,6 +75,16 @@ class MediaPreviewGridFragment : Fragment() {
                     listAdapter.setList(viewModel.getMediaStoreList())
                     rvMediaList.scrollToPosition(0)
                 }
+            }
+        }
+    }
+
+    private fun createConfig() {
+        if (queryConfig == null) {
+            queryConfig = QueryConfig()
+            with(queryConfig ?: return) {
+                mode = QueryMode.ALL
+                imgQueryFormatArray = arrayOf(ImgFormat.IMG_JPG, ImgFormat.IMG_PNG, ImgFormat.IMG_AVIF)
             }
         }
     }
