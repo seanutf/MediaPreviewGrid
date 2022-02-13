@@ -51,7 +51,7 @@ class MediaPreviewViewModel : ViewModel() {
         if(currentAlbum != null){
             if(currentAlbum?.mediaList.isNullOrEmpty()){
                 //根据当前所在文件夹获取文件夹下的当前类型所有媒体
-                val mediaList = mediaProvider.loadAlbumMedias2(currentAlbum!!.bucketId, needLoadAlbum)
+                val mediaList = mediaProvider.loadAlbumMedias(currentAlbum!!.bucketId, needLoadAlbum)
                 if(mediaList.isNullOrEmpty()){
                     error = true
                 } else {
@@ -61,7 +61,7 @@ class MediaPreviewViewModel : ViewModel() {
         } else {
             if(mediaProvider.getAlbumList().isNullOrEmpty()){
                 needLoadAlbum = true
-                val mediaList = mediaProvider.loadAlbumMedias2(-1, needLoadAlbum)
+                val mediaList = mediaProvider.loadAlbumMedias(-1, needLoadAlbum)
                 if(!mediaProvider.getAlbumList().isNullOrEmpty()){
                     currentAlbumList = mediaProvider.getAlbumList()
                     currentAlbum = mediaProvider.getAlbumList()!![0]
@@ -73,7 +73,7 @@ class MediaPreviewViewModel : ViewModel() {
                 currentAlbum = mediaProvider.getAlbumList()!![0]
                 if(currentAlbum?.mediaList.isNullOrEmpty()){
                     //根据当前所在文件夹获取文件夹下的当前类型所有媒体
-                    currentAlbum?.mediaList = mediaProvider.loadAlbumMedias2(currentAlbum!!.bucketId, needLoadAlbum)
+                    currentAlbum?.mediaList = mediaProvider.loadAlbumMedias(currentAlbum!!.bucketId, needLoadAlbum)
                 }
             }
         }
