@@ -38,4 +38,14 @@
         android:layout_alignBottom="@id/ivPhoto"
         android:background="@drawable/shape_bg_gradient_000000_80000000"
         android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:id="@+id/ivGifTag"
+        android:src="@mipmap/icon_gif"
+        android:layout_alignLeft="@id/ivPhoto"
+        android:layout_alignBottom="@id/ivPhoto"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"/>
 </RelativeLayout>

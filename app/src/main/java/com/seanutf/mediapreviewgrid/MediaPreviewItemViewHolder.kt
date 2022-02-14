@@ -28,14 +28,34 @@ class MediaPreviewItemViewHolder(private val itemVb: ItemMediaPreviewBinding) : 
         media?.let {
             if (media.isVideo) {
                 Glide.with(itemView.context).load(media.mediaPath).transition(DrawableTransitionOptions.withCrossFade()).into(itemVb.ivPhoto)
-
-                val duration = getVideoDuration(media.duration / 1000)
-                itemVb.tvVideoDuration.text = duration
-                itemVb.tvVideoDuration.visibility = View.VISIBLE
-                itemVb.videoTag.visibility = View.VISIBLE
+                showVideoInfo(true, media.duration)
+                showImgInfo(false)
             } else {
                 Glide.with(itemView.context).load(media.mediaPath).into(itemVb.ivPhoto)
+                showVideoInfo(false, 0)
+                if (media.isGif){
+                    showImgInfo(false)
+                } else {
+                    showImgInfo(true)
+                }
             }
+        }
+    }
+
+    private fun showImgInfo(show: Boolean) {
+        itemVb.ivGifTag.visibility = if (show) View.VISIBLE else View.INVISIBLE
+    }
+
+    private fun showVideoInfo(show: Boolean, duration: Long) {
+        if (show) {
+            val durStr = getVideoDuration(duration / 1000)
+            itemVb.tvVideoDuration.text = durStr
+            itemVb.tvVideoDuration.visibility = View.VISIBLE
+            itemVb.videoTag.visibility = View.VISIBLE
+        } else {
+            itemVb.tvVideoDuration.text = ""
+            itemVb.tvVideoDuration.visibility = View.INVISIBLE
+            itemVb.videoTag.visibility = View.INVISIBLE
         }
     }
 
