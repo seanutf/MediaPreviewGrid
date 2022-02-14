@@ -22,8 +22,7 @@ class MediaPreviewAdapter : RecyclerView.Adapter<MediaPreviewItemViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MediaPreviewItemViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_media_preview_default, parent, false)
-        return MediaPreviewItemViewHolder(itemView)
+        return MediaPreviewItemViewHolder.createViewHolder(parent)
     }
 
     override fun onBindViewHolder(holder: MediaPreviewItemViewHolder, position: Int) {
