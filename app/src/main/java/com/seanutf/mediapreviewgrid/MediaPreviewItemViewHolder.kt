@@ -34,9 +34,9 @@ class MediaPreviewItemViewHolder(private val itemVb: ItemMediaPreviewBinding) : 
                 Glide.with(itemView.context).load(media.mediaPath).into(itemVb.ivPhoto)
                 showVideoInfo(false, 0)
                 if (media.isGif){
-                    showImgInfo(false)
-                } else {
                     showImgInfo(true)
+                } else {
+                    showImgInfo(false)
                 }
             }
         }
