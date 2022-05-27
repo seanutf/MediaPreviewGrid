@@ -1,10 +1,11 @@
 package com.seanutf.mediapreviewgrid
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,22 @@ class MediaPreviewGridFragment : Fragment() {
     private val listAdapter = MediaPreviewAdapter()
     private val viewModel: MediaPreviewViewModel by viewModels()
     var queryConfig: QueryConfig? = null
+    private var clickMediaListener: MediaItemClickListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        // 确认容器 Activity 已实现该回调接口。否则，抛出异常
+        try {
+            clickMediaListener = context as? MediaItemClickListener?
+        } catch (e: ClassCastException) {
+//            throw ClassCastException(
+//                context.toString()
+//                        + " must implement MediaItemClickListener"
+//            )
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -49,6 +66,7 @@ class MediaPreviewGridFragment : Fragment() {
     private fun initView(view: View) {
         rvMediaList = view.findViewById(R.id.rvMediaList)
         rvMediaList.layoutManager = GridLayoutManager(activity, 3, RecyclerView.VERTICAL, false)
+        listAdapter.setMediaListener(clickMediaListener)
         rvMediaList.adapter = listAdapter
     }
 

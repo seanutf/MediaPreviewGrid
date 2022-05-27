@@ -24,7 +24,7 @@ class MediaPreviewItemViewHolder(private val itemVb: ItemMediaPreviewBinding) : 
         }
     }
 
-    fun setData(media: Media?) {
+    fun setData(media: Media?, itemClickListener: MediaPreviewItemClickListener? = null) {
         media?.let {
             if (media.isVideo) {
                 Glide.with(itemView.context).load(media.mediaPath).transition(DrawableTransitionOptions.withCrossFade()).into(itemVb.ivPhoto)
@@ -38,6 +38,10 @@ class MediaPreviewItemViewHolder(private val itemVb: ItemMediaPreviewBinding) : 
                 } else {
                     showImgInfo(false)
                 }
+            }
+
+            itemVb.root.setOnClickListener {
+                itemClickListener?.onClickItem()
             }
         }
     }
